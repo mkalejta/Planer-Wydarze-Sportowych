@@ -16,6 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from app.models import Profile, Event, Facility, Sport, Participation
+
+admin.site.register(Profile)
+admin.site.register(Event)
+admin.site.register(Facility)
+admin.site.register(Sport)
+admin.site.register(Participation)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
