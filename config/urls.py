@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app.models import Profile, Event, Facility, Sport, Participation
+from app import views
 
 admin.site.register(Profile)
 admin.site.register(Event)
@@ -26,4 +27,5 @@ admin.site.register(Participation)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/sign_up/', views.SignUpView.as_view(), name='sign_up')
 ]

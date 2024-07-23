@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>App Name</title>
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            font-size: 24px;
+            background-color: lightblue;
+        }
+
+        header button {
+            padding: 1rem;
+            border: none;
+            background: none;
+            font-size: 24px;
+            font-family: Arial;
+            font-weight: 400;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-family: Arial;
+            font-style: italic;
+            font-weight: 600;
+            text-decoration: underline;
+            background-color: lightblue;
+        }
+
+        footer span {
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button>
+            Strona Główna
+        </button>
+        <button>
+            Zarejestruj się
+        </button>
+        <button>
+            Zaloguj się
+        </button>
+    </header>
+    {% block content %}{% endblock %}
+    <footer>
+        <div><span>made by</span> Mikołaj Kalejta</div>
+    </footer>
+</body>
+</html>
