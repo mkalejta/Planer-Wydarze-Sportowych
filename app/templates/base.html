@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +15,9 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
+            border: 1px solid black;
             font-size: 24px;
-            background-color: lightblue;
+            background-image: linear-gradient(to bottom right, orange, yellow, orange);
         }
 
         header button {
@@ -23,8 +25,16 @@
             border: none;
             background: none;
             font-size: 24px;
-            font-family: Arial;
             font-weight: 400;
+            border: 1px solid black;
+            width: 100%;
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem;
         }
 
         footer {
@@ -37,16 +47,22 @@
             justify-content: center;
             align-items: center;
             font-size: 24px;
-            font-family: Arial;
             font-style: italic;
-            font-weight: 600;
-            text-decoration: underline;
-            background-color: lightblue;
+            background-image: linear-gradient(to bottom right, orange, yellow, orange);
+            border: 1px solid black;
         }
 
-        footer span {
+        footer>div {
             font-weight: 300;
+            display: flex;
+            padding-inline: 50px;
+            align-items: center;
         }
+
+        footer>div>img {
+            margin-right: 1rem;
+        }
+
     </style>
 </head>
 <body>
@@ -55,15 +71,15 @@
             Strona Główna
         </button>
         <button>
-            Zarejestruj się
+            Wydarzenia
         </button>
         <button>
-            Zaloguj się
+            Konto
         </button>
     </header>
-    {% block content %}{% endblock %}
+    <main>{% block content %}{% endblock %}</main>
     <footer>
-        <div><span>made by</span> Mikołaj Kalejta</div>
+        <div><img src="/static/images/email.png" alt="email" style="height: 30px; width: 30px;"><a href="mailto:kalejtamikolaj@wp.pl" style="color: black;">kalejtamikolaj@wp.pl</a></div>
     </footer>
 </body>
 </html>
