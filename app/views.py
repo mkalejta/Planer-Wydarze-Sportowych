@@ -13,4 +13,4 @@ class SignUpView(SuccessMessageMixin, generic.CreateView):
 
     def form_invalid(self, form):
         messages.add_message(self.request, messages.ERROR, "Please enter details properly")
-        return redirect('https://www.google.com/?hl=pl')
+        return redirect('/accounts/sign_up')

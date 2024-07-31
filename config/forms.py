@@ -48,10 +48,13 @@ class SignUpForm(UserCreationForm):
         })
 
     username = f.CharField(max_length=30)
-    first_name = f.CharField(max_length=150)
-    last_name = f.CharField(max_length=150)
-    email = f.CharField(max_length=150)
-    birth_date = f.DateField()
+    first_name = f.CharField(max_length=150, validators=[CapitalizeValidation])
+    last_name = f.CharField(max_length=150, validators=[CapitalizeValidation])
+    email = f.EmailField(max_length=150)
+    birth_date = f.DateField(label="Birth Date",
+                             required=True,
+                             widget=f.DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
+                             input_formats=["%Y-%m-%d"])
     password1 = f.CharField(widget=f.PasswordInput)
     password2 = f.CharField(widget=f.PasswordInput)
 
@@ -61,8 +64,8 @@ class SignUpForm(UserCreationForm):
 
     @atomic
     def save(self, commit=True):
-        result = super().save(commit)
-        profile = models.Profile(user=result)
+        user = super().save(commit)
+        profile = models.Profile(user=user)
         if commit:
             profile.save()
-        return result
+        return user
