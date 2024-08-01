@@ -64,8 +64,10 @@ class SignUpForm(UserCreationForm):
 
     @atomic
     def save(self, commit=True):
+        self.instance.is_active = False
         user = super().save(commit)
-        profile = models.Profile(user=user)
+        birth_date = self.cleaned_data['birth_date']
+        profile = models.Profile(user=user, birth_date=birth_date)
         if commit:
             profile.save()
         return user
