@@ -7,7 +7,8 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    birth_date = models.DateField()
+    birth_date = models.DateField(default='2002-06-14')
+    profile_picture = models.ImageField(default='default_profile_picture.jpg', upload_to='profile_pictures')
 
     def __str__(self):
         return self.user.username

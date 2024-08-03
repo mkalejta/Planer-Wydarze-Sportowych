@@ -19,6 +19,8 @@ from django.urls import path, include
 from app.models import Profile, Event, Facility, Sport, Participation
 from app import views
 from django.views.generic.base import TemplateView
+from django.conf import settings
+from django.conf.urls.static import static
 
 admin.site.register(Profile)
 admin.site.register(Event)
@@ -30,5 +32,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path('accounts/sign_up/', views.SignUpView.as_view(), name='sign_up'),
-    path("", TemplateView.as_view(template_name="home.html"), name="home")
-]
+    path("", TemplateView.as_view(template_name="home.html"), name='home'),
+    path("profile/", views.ProfileView.as_view(), name="profile"),
+    path('user_dashboard/', views.UserDashboard.as_view(), name='user_dashboard'),
+    path('update_profile/', views.UpdateProfile.as_view(), name='update_profile')
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,7 +1,7 @@
 import django.forms as f
 from django.db.transaction import atomic
 from app import models
-from django.contrib.auth.forms import User, UserCreationForm
+from django.contrib.auth.forms import User, UserCreationForm, UserChangeForm
 
 def CapitalizeValidation(c):
     if c[0].islower():
@@ -68,6 +68,27 @@ class SignUpForm(UserCreationForm):
         user = super().save(commit)
         birth_date = self.cleaned_data['birth_date']
         profile = models.Profile(user=user, birth_date=birth_date)
+        if commit:
+            profile.save()
+        return user
+
+
+class ProfileChangeForm(UserChangeForm):
+
+    birth_date = f.DateField()
+    profile_picture = f.ImageField()
+
+    class Meta:
+        model = models.User
+        fields = ('first_name', 'last_name', 'username', 'email')
+
+    @atomic
+    def save(self, commit=True):
+        self.instance.is_active = False
+        user = super().save(commit)
+        birth_date = self.cleaned_data['birth_date']
+        profile_picture = self.cleaned_data['profile_picture']
+        profile = models.Profile(user=user, birth_date=birth_date, profile_picture=profile_picture)
         if commit:
             profile.save()
         return user

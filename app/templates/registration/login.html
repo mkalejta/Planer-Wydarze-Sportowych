@@ -2,11 +2,36 @@
 
 {% block title %}Login{% endblock %}
 
+{% block style %}
+    br + div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    div > form {
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form > button {
+        margin-top: 0.5rem;
+    }
+
+{% endblock %}
+
 {% block content %}
-<h2>Log In</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form }}
-  <button type="submit">Log In</button>
-</form>
+<br>
+<div>
+    <h2>Log In</h2>
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+        <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
+</div>
 {% endblock %}

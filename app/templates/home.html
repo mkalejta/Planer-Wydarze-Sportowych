@@ -6,6 +6,13 @@
     form > button {
         margin-left: 1rem;
     }
+
+    br + div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 {% endblock %}
 
 {% block content %}
@@ -13,10 +20,13 @@
         Hi {{ user.username }}!
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
-            <button type="submit">Log Out</button>
+            <button type="submit" class="btn btn-primary">Log Out</button>
         </form>
     {% else %}
-        <p>You are not logged in</p>
-        <a href="{% url 'login' %}">Log In</a>
+        <br>
+        <div>
+            <p>You are not logged in</p>
+            <a href="{% url 'login' %}">Log In</a>
+        </div>
     {% endif %}
 {% endblock %}
