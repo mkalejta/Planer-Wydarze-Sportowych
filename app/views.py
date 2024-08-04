@@ -1,7 +1,7 @@
 import django.views.generic as generic
 from config import forms
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.contrib.messages.views import messages, SuccessMessageMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from app import models
@@ -27,7 +27,13 @@ class UserDashboard(generic.TemplateView):
     template_name = 'dashboard.html'
 
 
-class UpdateProfile(generic.UpdateView):
-    template_name = 'update_profile.html'
-    form = forms.ProfileChangeForm
-    model = models.User
+def update_profile(request):
+    msg = None
+    if request.method == 'POST':
+        form = forms.UpdateProfile(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            msg = 'Data has been saved'
+    form = forms.UpdateProfile(instance=request.user)
+    args = {'form': form, 'msg': msg}
+    return render(request, 'update_profile.html', args)

@@ -73,13 +73,13 @@ class SignUpForm(UserCreationForm):
         return user
 
 
-class ProfileChangeForm(UserChangeForm):
+class UpdateProfile(UserChangeForm):
 
     birth_date = f.DateField()
     profile_picture = f.ImageField()
 
     class Meta:
-        model = models.User
+        model = User
         fields = ('first_name', 'last_name', 'username', 'email')
 
     @atomic
