@@ -5,6 +5,7 @@ from django.db import transaction
 from config import forms
 from django.shortcuts import redirect, render
 from django.contrib.messages.views import messages
+from app import models
 
 def SignUpView(request):
     form = forms.SignUpForm()
@@ -48,3 +49,8 @@ def update_profile(request):
         user_form = forms.UpdateProfile(instance=request.user)
         profile_form = forms.ProfilePicForm(instance=request.user.profile)
     return render(request, 'update_profile.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+class EventsList(generic.ListView):
+    template_name = 'events_list.html'
+    model = models.Event

@@ -31,12 +31,12 @@ class Sport(models.Model):
 class Facility(models.Model):
     name = models.CharField(max_length=128)
     address = models.CharField(max_length=128)
-    id_sport = models.ForeignKey(Sport, on_delete=models.DO_NOTHING)
+    sport = models.ForeignKey(Sport, on_delete=models.DO_NOTHING)
 
 
 class Event(models.Model):
-    id_organizer = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    id_facility = models.ForeignKey(Facility, on_delete=models.DO_NOTHING)
+    organizer = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    facility = models.ForeignKey(Facility, on_delete=models.DO_NOTHING)
     datetime = models.DateTimeField()
     estimated_time = models.IntegerField(choices=((30, "30"), (45, "45"), (60, "60"), (75, "75"), (90, "90"),
                                                   (105, "105"), (120, "120"), (135, "135"), (150, "150")))

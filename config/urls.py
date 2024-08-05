@@ -35,5 +35,6 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="home.html"), name='home'),
     path('logout/', views.logout_user, name='logout'),
     path('user_dashboard/', views.UserDashboard.as_view(), name='user_dashboard'),
-    path('update_profile/', views.update_profile, name='update_profile')
+    path('update_profile/', views.update_profile, name='update_profile'),
+    path('events/', views.EventsList.as_view(), name='events_list')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

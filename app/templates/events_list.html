@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_filters %}
+{% block title %}Events{% endblock %}
+
+
+{% block style %}
+    main > div.container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .event {
+        height: 200px;
+        display: flex;
+    }
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+    <h2>{% now 'd/m/Y' %}</h2>
+    {% for o in object_list %}
+        <div class="event" style="background-image: url({% static 'images/' %}{{ o.facility.sport.name }}.jpg);">
+            <div class="left">
+                <p>{{ o.organizer.username }}</p>
+                <p>{{ o.facility.name }}</p>
+                <p>{{ o.datetime }}</p>
+                <p>{{ o.estimated_time }}</p>
+            </div>
+            <div class="right">
+                <p>{{ o.max_participants }}</p>
+            </div>
+        </div>
+    {% endfor %}
+    <h2>{{ 1|addDays|date:'d/m/Y' }}</h2>
+    {% for o in object_list %}
+    <div class="event" style="background-image: url({% static 'images/' %}{{ o.facility.sport.name }}.jpg);">
+        <div class="left">
+            <p>{{ o.organizer.username }}</p>
+            <p>{{ o.facility.name }}</p>
+            <p>{{ o.datetime }}</p>
+            <p>{{ o.estimated_time }}</p>
+        </div>
+        <div class="right">
+            <p>{{ o.max_participants }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    <h2>{{ 2|addDays|date:'d/m/Y' }}</h2>
+    {% for o in object_list %}
+    <div class="event" style="background-image: url({% static 'images/' %}{{ o.facility.sport.name }}.jpg);">
+        <div class="left">
+            <p>{{ o.organizer.username }}</p>
+            <p>{{ o.facility.name }}</p>
+            <p>{{ o.datetime }}</p>
+            <p>{{ o.estimated_time }}</p>
+        </div>
+        <div class="right">
+            <p>{{ o.max_participants }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    <h2>{{ 3|addDays|date:'d/m/Y' }}</h2>
+    {% for o in object_list %}
+    <div class="event" style="background-image: url({% static 'images/' %}{{ o.facility.sport.name }}.jpg);">
+        <div class="left">
+            <p>{{ o.organizer.username }}</p>
+            <p>{{ o.facility.name }}</p>
+            <p>{{ o.datetime }}</p>
+            <p>{{ o.estimated_time }}</p>
+        </div>
+        <div class="right">
+            <p>{{ o.max_participants }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    <h2>{{ 4|addDays|date:'d/m/Y' }}</h2>
+    {% for o in object_list %}
+    <div class="event" style="background-image: url({% static 'images/' %}{{ o.facility.sport.name }}.jpg);">
+        <div class="left">
+            <p>{{ o.organizer.username }}</p>
+            <p>{{ o.facility.name }}</p>
+            <p>{{ o.datetime }}</p>
+            <p>{{ o.estimated_time }}</p>
+        </div>
+        <div class="right">
+            <p>{{ o.max_participants }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    <h2>{{ 5|addDays|date:'d/m/Y' }}</h2>
+    {% for o in object_list %}
+    <div class="event" style="background-image: url({% static 'images/' %}{{ o.facility.sport.name }}.jpg);">
+        <div class="left">
+            <p>{{ o.organizer.username }}</p>
+            <p>{{ o.facility.name }}</p>
+            <p>{{ o.datetime }}</p>
+            <p>{{ o.estimated_time }}</p>
+        </div>
+        <div class="right">
+            <p>{{ o.max_participants }}</p>
+        </div>
+    </div>
+    {% endfor %}
+    <h2>{{ 6|addDays|date:'d/m/Y' }}</h2>
+    {% for o in object_list %}
+    <div class="event" style="background-image: url({% static 'images/' %}{{ o.facility.sport.name }}.jpg);">
+        <div class="left">
+            <p>{{ o.organizer.username }}</p>
+            <p>{{ o.facility.name }}</p>
+            <p>{{ o.datetime }}</p>
+            <p>{{ o.estimated_time }}</p>
+        </div>
+        <div class="right">
+            <p>{{ o.max_participants }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
