@@ -17,20 +17,14 @@
             </div>
             <div class="col-9">
                 <h3 class="mb-4 border-bottom pb-1" style="font-style: italic;">Update Profile</h3>
-                {% if msg %}
-                    <p class="text-success">{{msg}}</p>
-                {% endif %}
-                <table class="table table-bordered">
-                    <form method="post" action="">
-                            {% csrf_token %}
-                            {{form.as_table}}
-                            <tr>
-                                <td colspan="2">
-                                    <input type="submit" class="btn btn-primary"/>
-                                </td>
-                            </tr>
-                    </form>
-                </table>
+                <form method="post" action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{profile_form.as_p}}
+                    <br/>
+                    {{user_form.as_p}}
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </form>
             </div>
         </div>
     </section>

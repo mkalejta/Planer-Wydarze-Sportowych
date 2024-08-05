@@ -31,9 +31,9 @@ admin.site.register(Participation)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
-    path('accounts/sign_up/', views.SignUpView.as_view(), name='sign_up'),
+    path('accounts/sign_up/', views.SignUpView, name='sign_up'),
     path("", TemplateView.as_view(template_name="home.html"), name='home'),
-    path("profile/", views.ProfileView.as_view(), name="profile"),
+    path('logout/', views.logout_user, name='logout'),
     path('user_dashboard/', views.UserDashboard.as_view(), name='user_dashboard'),
     path('update_profile/', views.update_profile, name='update_profile')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

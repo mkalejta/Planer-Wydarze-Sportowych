@@ -95,12 +95,10 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                     {% if not request.user.is_authenticated %}
                         <li><a class="dropdown-item" href="{% url 'sign_up' %}">Register</a></li>
-                        <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+                        <li><a class="dropdown-item nav-link" href="{% url 'login' %}">Login</a></li>
                     {% else %}
                         <li><a class="dropdown-item" href="{% url 'user_dashboard' %}">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="{% url 'update_profile' %}">Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li><a class="dropdown-item nav-link" href="{% url 'logout' %}">Log Out</a></li>
                     {% endif %}
                     </ul>
                 </li>
