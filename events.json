@@ -1,0 +1,11 @@
+[
+  {
+    "model": "app.event",
+    "pk": 1,
+    "fields": {
+      "organizer": "mikolaj",
+      "region":
+    }
+  },
+  {}
+]

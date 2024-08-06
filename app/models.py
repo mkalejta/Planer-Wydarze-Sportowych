@@ -33,6 +33,9 @@ class Facility(models.Model):
     address = models.CharField(max_length=128)
     sport = models.ForeignKey(Sport, on_delete=models.DO_NOTHING)
 
+    def __str__(self):
+        return f'{self.name} {self.sport.name}'
+
 
 class Event(models.Model):
     organizer = models.ForeignKey(User, on_delete=models.DO_NOTHING)
@@ -41,7 +44,7 @@ class Event(models.Model):
     estimated_time = models.IntegerField(choices=((30, "30"), (45, "45"), (60, "60"), (75, "75"), (90, "90"),
                                                   (105, "105"), (120, "120"), (135, "135"), (150, "150")))
     max_participants = models.IntegerField()
-    description = models.TextField()
+    description = models.TextField(null=True, blank=True)
 
 
 class Participation(models.Model):

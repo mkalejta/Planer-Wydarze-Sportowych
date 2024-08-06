@@ -8,17 +8,32 @@
     main > div.container {
         display: flex;
         flex-direction: column;
+        margin: 1rem 0 5rem 0;
     }
 
     .event {
-        height: 200px;
+        width: 80%;
         display: flex;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        opacity: 0.9;
+    }
+
+    .event > .left {
+        font-weight: bold;
+    }
+
+    .create-event {
+        position: absolute;
+        right: 1rem;
     }
 {% endblock %}
 
 
 {% block content %}
 <div class="container">
+    <a class="create-event btn btn-primary" href="{% url 'create_event' %}">Create Event</a>
     <h2>{% now 'd/m/Y' %}</h2>
     {% for o in object_list %}
         <div class="event" style="background-image: url({% static 'images/' %}{{ o.facility.sport.name }}.jpg);">

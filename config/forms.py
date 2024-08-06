@@ -1,5 +1,4 @@
 import django.forms as f
-from django.db.transaction import atomic
 from app import models
 from django.contrib.auth.forms import User, UserCreationForm, UserChangeForm
 
@@ -76,3 +75,31 @@ class ProfilePicForm(f.ModelForm):
     class Meta:
         model = models.Profile
         fields = ('profile_picture', 'birth_date')
+
+
+class CreateEventForm(f.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(CreateEventForm, self).__init__(*args, **kwargs)
+
+        self.fields['facility'].widget.attrs.update({
+            'class': 'form-control'
+        })
+
+        self.fields['estimated_time'].widget.attrs.update({
+            'class': 'form-control',
+        })
+
+        self.fields['max_participants'].widget.attrs.update({
+            'class': 'form-control'
+        })
+
+        self.fields['estimated_time'].label = 'Estimated time (in minutes)'
+
+    datetime = f.DateTimeField(label="Date & Time", widget=f.DateTimeInput(format="%Y-%m-%d%H:%M",
+                               attrs={"type": "text", "class": "form-control", 'placeholder': 'Choose a date',
+                                      'onfocus': "(this.type='datetime-local')"}), input_formats=["%Y-%m-%d%H:%M"])
+    facility = f.ModelChoiceField(queryset=models.Facility.objects.all(), empty_label='Select facility')
+
+    class Meta:
+        model = models.Event
+        fields = ('facility', 'datetime', 'estimated_time', 'max_participants', 'description')

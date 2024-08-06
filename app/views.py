@@ -2,6 +2,8 @@ import django.views.generic as generic
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.urls import reverse_lazy
+
 from config import forms
 from django.shortcuts import redirect, render
 from django.contrib.messages.views import messages
@@ -54,3 +56,16 @@ def update_profile(request):
 class EventsList(generic.ListView):
     template_name = 'events_list.html'
     model = models.Event
+
+
+@login_required
+def create_event(request):
+    form = forms.CreateEventForm
+    if request.method == 'POST':
+        form = forms.CreateEventForm(request.POST)
+        if form.is_valid():
+            new_event = form.save(commit=False)
+            new_event.organizer = request.user
+            new_event.save()
+            return redirect('events_list')
+    return render(request, "create_event.html", {'form': form})
