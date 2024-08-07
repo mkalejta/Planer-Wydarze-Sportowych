@@ -53,9 +53,16 @@ def update_profile(request):
     return render(request, 'update_profile.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
-class EventsList(generic.ListView):
-    template_name = 'events_list.html'
-    model = models.Event
+def events_list(request):
+    qs = models.Event.objects.all()
+    sport_category_query = request.GET.get('sport_category')
+    print(sport_category_query)
+    if sport_category_query != "" and sport_category_query is not None:
+        qs = qs.filter(facility__sport__id=sport_category_query)
+    context = {
+        'queryset': qs
+    }
+    return render(request, "events_list.html", context)
 
 
 @login_required
