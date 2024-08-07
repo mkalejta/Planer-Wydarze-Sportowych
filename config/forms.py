@@ -95,11 +95,14 @@ class CreateEventForm(f.ModelForm):
 
         self.fields['estimated_time'].label = 'Estimated time (in minutes)'
 
-    datetime = f.DateTimeField(label="Date & Time", widget=f.DateTimeInput(format="%Y-%m-%d%H:%M",
-                               attrs={"type": "text", "class": "form-control", 'placeholder': 'Choose a date',
-                                      'onfocus': "(this.type='datetime-local')"}), input_formats=["%Y-%m-%d%H:%M"])
+    date = f.DateField(label="Date", widget=f.DateInput(format="%Y-%m-%d",
+                                                        attrs={"type": "text", "class": "form-control", 'placeholder': 'Choose date',
+                                                               'onfocus': "(this.type='date')"}), input_formats=["%Y-%m-%d"])
+    time = f.TimeField(label="Time", widget=f.TimeInput(format="%H:%M",
+                                                        attrs={"type": "text", "class": "form-control", 'placeholder': 'Choose time',
+                                                               'onfocus': "(this.type='time')"}), input_formats=["%H:%M"])
     facility = f.ModelChoiceField(queryset=models.Facility.objects.all(), empty_label='Select facility')
 
     class Meta:
         model = models.Event
-        fields = ('facility', 'datetime', 'estimated_time', 'max_participants', 'description')
+        fields = ('facility', 'date', 'time', 'estimated_time', 'max_participants', 'description')
